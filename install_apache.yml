@@ -6,12 +6,10 @@
 
   - name: install apache2 package
     apt:
-      name: apache2
-      state: present
+      update_cache: yes
     when: ansible_os_family == "Debian"
 
   - name: install httpd package
     dnf:
-      name: httpd
-      state: present
+      update_cache: yes
     when: ansible_os_family == "RedHat"
