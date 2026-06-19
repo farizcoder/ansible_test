@@ -4,12 +4,10 @@
   become: true
   tasks:
 
-  - name: install apache2 package
-    apt:
-      update_cache: yes
-    when: ansible_os_family == "Debian"
-
-  - name: install httpd package
-    dnf:
-      update_cache: yes
-    when: ansible_os_family == "RedHat"
+  - name: install apache package and php package
+    package:
+     update_cache: yes
+     name:
+      - "{{ apache_package }}"
+      - "{{ php_package }}"
+     state: present
