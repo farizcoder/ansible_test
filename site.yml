@@ -1,0 +1,26 @@
+---
+
+- hosts: redhat_family
+  become: true
+  tasks:
+
+    - name: install updates (rocky)
+      tags:
+        - updates
+        - rocky
+      dnf:
+        update_only: yes
+        update_cache: yes
+      
+
+- hosts: debian_family
+  become: true
+  tasks:
+
+    - name: install apache updates (ubuntu)
+      tags:
+        - ubuntu
+        - updates
+      apt:
+        upgrade: dist
+      
