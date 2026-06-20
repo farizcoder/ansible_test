@@ -5,12 +5,19 @@
   tasks:
 
     - name: install updates (rocky)
-      tags:
-        - updates
-        - rocky
+      tags: apache
       dnf:
-        update_only: yes
-        update_cache: yes
+        name: "{{ apache_package }}"
+        state: present
+
+    - name: copy default html file for site
+      tags: apache
+      copy:
+        src: folder/site.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: 0644
       
 
 - hosts: debian_family
