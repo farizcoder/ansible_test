@@ -3,13 +3,7 @@
 - hosts: all
   become: true
   tasks:
-    - name: change line in config file
-      lineinfile:
-        path: /etc/httpd/conf/httpd.conf
-        regexp: '^ServerAdmin'
-        line: ServerAdmin alakbarov.designer@gmail.com
-      when: ansible_os_family == "RedHat"
-    
+
     - name: restart-service httpd in rocky
       service:
         name: httpd.service

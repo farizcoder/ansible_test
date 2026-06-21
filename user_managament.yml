@@ -1,0 +1,25 @@
+---
+
+  - hosts: all
+    become: true
+    tasks:
+      - name: creat a new user
+        tags: 
+          - user_creation
+          - RedHat
+        user:
+          name: simone
+          groups: root
+      
+      - name: add ssh key for simone
+        ansible.posix.authorized_key:
+          user: simone
+          key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMa2ctZ+3vF40Aff7magvxWnBPHhYXBAtq2SAiCqBFTr ansible@rocky2
+
+     # - name: adding simone to sudoers file
+     #   copy:
+     #     src: folder/sudoer_simone
+     #     dest: /etc/sudoers.d/simone
+     #     owner: root
+     #     group: root
+     #     mode: 0440
