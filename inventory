@@ -1,5 +1,5 @@
 [debian_family]
-docker-ubuntu apache_package=apache2 php_package=libapache2-mod-php
+docker-ubuntu 
 
 [redhat_family]
-rocky apache_package=httpd php_package=php
+rocky 

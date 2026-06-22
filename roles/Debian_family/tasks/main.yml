@@ -1,5 +1,6 @@
 - name: changing line in apache2 conf file
   lineinfile:
     path: /etc/apache2/apache2.conf
-    regex: '^#ServerRoot'
-    line: '#ServerRoott "/etc/apache2"'
+    regex: '^#ServerRoott'
+    line: '#ServerRoot "/etc/apache2"'
+  notify: restart_apache
