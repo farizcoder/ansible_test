@@ -1,0 +1,33 @@
+---
+
+- hosts: redhat_family
+  become: true
+  tasks:
+
+    - name: install updates (rocky)
+      tags: apache
+      dnf:
+        name: "{{ apache_package }}"
+        state: present
+
+    - name: copy default html file for site
+      tags: apache
+      copy:
+        src: folder/site.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: 0644
+      
+
+- hosts: debian_family
+  become: true
+  tasks:
+
+    - name: install apache updates (ubuntu)
+      tags:
+        - ubuntu
+        - updates
+      apt:
+        upgrade: dist
+      

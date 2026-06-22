@@ -1,0 +1,7 @@
+- name: restart firewalld and httpd service
+  service:
+    name: "{{ item }}"
+    state: restarted
+  loop:
+    - firewalld
+    - httpd

@@ -1,33 +1,29 @@
 ---
 
-- hosts: redhat_family
-  become: true
-  tasks:
-
-    - name: install updates (rocky)
-      tags: apache
-      dnf:
-        name: "{{ apache_package }}"
-        state: present
-
-    - name: copy default html file for site
-      tags: apache
-      copy:
-        src: folder/site.html
-        dest: /var/www/html/index.html
-        owner: root
-        group: root
-        mode: 0644
-      
-
-- hosts: debian_family
-  become: true
-  tasks:
-
-    - name: install apache updates (ubuntu)
-      tags:
-        - ubuntu
-        - updates
+  - hosts: all
+    become: true
+    tasks:
+    - name: Update Debian servers
       apt:
-        upgrade: dist
-      
+        upgrade: dist 
+      when: ansible_os_family == "Debian"
+
+    - name: Update RedHat servers
+      dnf:
+        update_cache: yes
+      when: ansible_os_family == "RedHat"
+
+  - hosts: all
+    become: true
+    roles:
+      - base
+
+  - hosts: debian_family
+    become: true
+    roles:
+      - Debian_family
+
+  - hosts: redhat_family
+    become: true
+    roles:
+      - RedHat_family
