@@ -1,3 +1,4 @@
 apache_package_name: apache2
 apache_service: apache2
-
+ssh_config_file: debian_sshd_config
+ssh_service: ssh.service

@@ -1,3 +1,4 @@
 apache_package_name: httpd
 apache_service: httpd
-
+ssh_config_file: redhat_sshd_config
+ssh_service: sshd.service
